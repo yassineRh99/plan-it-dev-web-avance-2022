@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(role.getName()));
 		});
 		return new org.springframework.security.core.userdetails.User(
-			user.getUsername(),user.getPassword(),authorities
+			user.getUsername(),user.getMot_de_passe(),authorities
 		);
 	}
 	
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public User addUser(User user) {
 		log.info("Adding new user");
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setMot_de_passe(passwordEncoder.encode(user.getMot_de_passe()));
 		return userRepository.save(user);
 	}
 

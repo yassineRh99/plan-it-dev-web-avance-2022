@@ -21,7 +21,9 @@ public class User {
 	private Long id;
 	private String email;
 	private String username;
-	private String password;
+	private int age;
+	private String sexe;
+	private String mot_de_passe;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Role> roles = Arrays.asList();
 }
