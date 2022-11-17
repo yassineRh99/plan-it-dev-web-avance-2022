@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -30,12 +31,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Override
+	public void configure(WebSecurity web) throws Exception {
+		super.configure(web);
+		web.ignoring().antMatchers("/register");
+	}
+	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors();	
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests().antMatchers("/login").permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.GET,"/home").hasAuthority("UTILISATEUR");
+		http.authorizeRequests().antMatchers(HttpMethod.POST,"register").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.PUT,"/confirm").hasAuthority("ADMINISTRATEUR");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
 		http.addFilterBefore(new CustomAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
