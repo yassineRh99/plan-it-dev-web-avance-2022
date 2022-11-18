@@ -30,11 +30,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException,RuntimeException {
 		User user = userRepository.findByUsername(username);
 		if(user == null) {
 			log.error("Username not found !");
 			throw new UsernameNotFoundException("User not found in the database !");
+		}
+		if(!user.isMembre()) {
+			log.error("L'utilisateur n'a pas joigner l'equipe encore !");
+			throw new RuntimeException("User not allowed to login !");
 		}
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		user.getRoles().forEach(role -> {
@@ -48,6 +52,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public User getUser(String username) {
 		return userRepository.findByUsername(username);
+	}
+	
+	@Override
+	public User getUser(Long userId) {
+		return userRepository.findById(userId).orElse(null);
 	}
 
 	@Override
