@@ -12,8 +12,12 @@ export class TokenService {
   }
 
   isLogged(): boolean{
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("planit_jwt");
     return !!token
+  }
+
+  deleteToken(): void{
+    localStorage.clear();
   }
 
 }
