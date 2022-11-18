@@ -17,6 +17,7 @@ export class AuthService {
 
   logout(): void{
     this.tokenService.deleteToken();
+    window.location.reload();
   }
 
 }

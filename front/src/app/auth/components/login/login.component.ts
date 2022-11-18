@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../../core/services/auth.service';
 import { TokenService } from './../../../core/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
     this.authService.login("ADMIN","1949").subscribe(
       data => {
         this.tokenService.saveToken(data.access_token);
+        this.router.navigateByUrl('/');
       }
     )
   }
