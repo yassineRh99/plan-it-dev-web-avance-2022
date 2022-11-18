@@ -22,6 +22,10 @@ public class User {
 	private String email;
 	private String username;
 	private int age;
+	
+	//test espace pour github desk
+	
+	
 	private String sexe;
 	private String mot_de_passe;
 	@ManyToMany(fetch = FetchType.EAGER)
