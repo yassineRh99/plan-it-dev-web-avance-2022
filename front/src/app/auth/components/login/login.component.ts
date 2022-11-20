@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../../core/services/auth.service';
 import { TokenService } from './../../../core/services/token.service';
+import { Router } from '@angular/router';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
