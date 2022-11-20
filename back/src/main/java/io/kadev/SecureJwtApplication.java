@@ -2,19 +2,17 @@ package io.kadev;
 
 import java.util.ArrayList;
 
-import io.kadev.models.Event;
-import io.kadev.services.EventService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import io.kadev.models.Event;
 import io.kadev.models.Role;
 import io.kadev.models.User;
+import io.kadev.services.EventService;
 import io.kadev.services.UserServiceImpl;
 
 @SpringBootApplication
