@@ -5,9 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import { EventModule } from './event/event.module';
-
-
 
 
 @NgModule({
@@ -19,7 +16,9 @@ import { EventModule } from './event/event.module';
     AppRoutingModule,
     AuthModule,
     CoreModule,
+
     EventModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
