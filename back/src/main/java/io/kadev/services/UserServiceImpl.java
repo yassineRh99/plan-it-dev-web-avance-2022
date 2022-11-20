@@ -2,6 +2,7 @@ package io.kadev.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -62,6 +63,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public Role getRole(String name) {
 		return roleRepository.findByName(name);
+	}
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 
 	@Override

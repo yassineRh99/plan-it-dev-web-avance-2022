@@ -2,6 +2,8 @@ package io.kadev;
 
 import java.util.ArrayList;
 
+import io.kadev.models.Event;
+import io.kadev.services.EventService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,7 +30,7 @@ public class SecureJwtApplication {
 	}
 
 	@Bean
-	CommandLineRunner start(UserServiceImpl userService) {
+	CommandLineRunner start(UserServiceImpl userService, EventService eventService) {
 		return args -> {
 			userService.addRole(new Role(null,"UTILISATEUR"));
 			userService.addRole(new Role(null,"ADMINISTRATEUR"));
@@ -39,6 +41,12 @@ public class SecureJwtApplication {
 			userService.addRoleToUser("ADMIN", "ADMINISTRATEUR");
 			userService.addRoleToUser("USER", "UTILISATEUR");
 			userService.addRoleToUser("ADMIN", "UTILISATEUR");
+
+			eventService.addEvent(new Event(null, "Title 1", "Address 1", "Description 1 ...."));
+			eventService.addEvent(new Event(null, "Title 2", "Address 2", "Description 2 ...."));
+			eventService.addEvent(new Event(null, "Title 3", "Address 3", "Description 3 ...."));
+			eventService.addEvent(new Event(null, "Title 4", "Address 4", "Description 4 ...."));
+
 		};
 	}
 	
