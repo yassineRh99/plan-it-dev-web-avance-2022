@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { LoginRegisterGuard } from '../core/guards/login-register.guard';
-import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from '../core/guards/auth.guard';
+import { EventsPageComponent } from './components/events-page/events-page.component';
 
 const routes: Routes = [
-    { path: 'login', component: LoginComponent, canActivate: [LoginRegisterGuard] }
+    { path: 'events', component: EventsPageComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({
@@ -17,4 +17,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class AuthRoutingModule { }
+export class EventRoutingModule { }
