@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.username,this.loginForm.value.password).subscribe(
       data => {
         this.tokenService.saveToken(data.access_token);
+        this.router.navigateByUrl("/events")
       },
       error => {
         this.error = true

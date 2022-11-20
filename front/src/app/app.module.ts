@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { EventModule } from './event/event.module';
+
 
 
 
@@ -16,7 +18,8 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    EventModule
   ],
   providers: [],
   bootstrap: [AppComponent]
