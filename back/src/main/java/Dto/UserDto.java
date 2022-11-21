@@ -9,6 +9,6 @@ public class UserDto {
 	private String username;
 	private String email;
 	private int age;
-	private String sexe;
+	private String gender;
 	private String password;
 }

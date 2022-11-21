@@ -2,6 +2,7 @@ package io.kadev.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import io.kadev.models.User;
 import io.kadev.services.UserService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired
@@ -27,7 +29,7 @@ public class UserController {
 		user.setAge(userDto.getAge());
 		user.setMembre(false);
 		user.setMot_de_passe(userDto.getPassword());
-		user.setGender(userDto.getSexe());
+		user.setGender(userDto.getGender());
 		return ResponseEntity.ok().body(userService.addUser(user));
 	}
 	

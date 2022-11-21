@@ -2,6 +2,7 @@ package io.kadev.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import io.kadev.models.EventDate;
 import io.kadev.services.EventDateService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EventDateController {
     @Autowired
     EventDateService eventDateService;
