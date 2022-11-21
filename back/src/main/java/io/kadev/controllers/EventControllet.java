@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/event")
 public class EventControllet {
     @Autowired
     EventService eventService;
 
     @PostMapping("/add-event")
-    public ResponseEntity<Event> addEvent(@RequestParam EventDto eventDto){
+    public ResponseEntity<Event> addEvent(@RequestBody EventDto eventDto){
         Event event = new Event();
         event.setDescription(eventDto.getDescription());
         event.setTitle(eventDto.getTitle());
         event.setAddress_of_location(eventDto.getAddress_of_location());
+        event.setEventDates((eventDto.getEventDates()));
         return ResponseEntity.ok().body(eventService.addEvent(event));
     }
 

@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+import java.util.Arrays;
+import java.util.List;
 
 
 @Entity
@@ -19,4 +20,6 @@ public class Event {
     private String title;
     private String address_of_location;
     private String description;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<EventDate> eventDates = Arrays.asList();
 }

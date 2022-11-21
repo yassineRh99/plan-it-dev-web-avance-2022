@@ -1,8 +1,7 @@
 package io.kadev.services;
 
 import io.kadev.models.Event;
-import io.kadev.models.Role;
-import io.kadev.models.User;
+
 
 import java.util.List;
 
