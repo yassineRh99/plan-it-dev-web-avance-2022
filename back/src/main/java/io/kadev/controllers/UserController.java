@@ -17,10 +17,10 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/users")
-	public List<User> getAllUsers(){
-		return userService.getAllUsers();
-	}
+//	@GetMapping("/users")
+//	public List<User> getAllUsers(){
+//		return userService.getAllUsers();
+//	}
 	
 	@PostMapping("register")
 	public ResponseEntity<User> registerUser(@RequestBody UserDto userDto){

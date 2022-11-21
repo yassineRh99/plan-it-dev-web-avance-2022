@@ -18,7 +18,6 @@ public class EventDate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
     private Event event = new Event();
     private Date date_of_event;
 

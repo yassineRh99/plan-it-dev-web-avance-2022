@@ -27,6 +27,7 @@ public class User {
 	private String sexe;
 	private boolean membre;
 	private String mot_de_passe;
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Role> roles = Arrays.asList();
+	
 }

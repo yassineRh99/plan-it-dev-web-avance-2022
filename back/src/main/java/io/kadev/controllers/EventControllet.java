@@ -17,7 +17,7 @@ public class EventControllet {
     EventService eventService;
 
     @PostMapping("/add-event")
-    public ResponseEntity<Event> addEvent(@RequestParam EventDto eventDto){
+    public ResponseEntity<Event> addEvent(@RequestBody EventDto eventDto){
         Event event = new Event();
         event.setDescription(eventDto.getDescription());
         event.setTitle(eventDto.getTitle());
