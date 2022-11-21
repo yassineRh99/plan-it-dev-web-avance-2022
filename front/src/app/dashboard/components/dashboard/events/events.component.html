@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Add ress</th>
+          <th scope="col">Desciption</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of allEvents">
+          <td>{{ event.id }}</td>
+          <td>{{ event.title }}</td>
+          <td>{{ event.address_of_location }}</td>
+          <td>{{ event.description }}</td>
+          <td><button type="button" class="btn btn-sm btn-primary">More details</button></td>
+        </tr>            
+      </tbody>
+    </table>
+  </div>

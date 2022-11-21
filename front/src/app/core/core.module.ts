@@ -13,7 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
     HttpClientModule
   ],
   providers: [
-    HttpInterceptorProviders
+    
   ]
 })
 export class CoreModule { }

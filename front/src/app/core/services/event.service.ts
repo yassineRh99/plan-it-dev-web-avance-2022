@@ -12,9 +12,8 @@ export class EventService {
   constructor(private httpClient: HttpClient) { }
 
   getAllEvents(): Observable<any>{
-    return this.httpClient.post<string>(`${environment.baseUrl}/events`, null);
+    
+    return this.httpClient.get(`${environment.baseUrl}/events`);
   }
-
-
 
 }

@@ -5,31 +5,30 @@ import { Router } from '@angular/router';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
- loginForm: FormGroup = new FormGroup({
-  username: new FormControl(''),
-  password: new FormControl(''),
-  });
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    });
+  
+    error: boolean = false
 
-  error: boolean = false
-
-  constructor(
-    private authService: AuthService,
-    private tokenService: TokenService,
-    private router: Router
-  ) { }
+  constructor( private authService: AuthService,
+              private tokenService: TokenService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
+    
   }
 
-  //il faut passer le username et le password en arguments (depuis le formulaire)
   onLogin() {
     this.authService.login(this.loginForm.value.username,this.loginForm.value.password).subscribe(
       data => {
@@ -44,14 +43,6 @@ export class LoginComponent implements OnInit {
 
   closeErrorAlert(){
     this.error = false
-  }
-
-  navigateToRegister(){
-
-  }
-
-  onLogout() {
-    this.authService.logout();
   }
 
 }

@@ -1,0 +1,74 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Planit</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a (click)="onLogout()" class="nav-link px-3">Sign out</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a routerLink="/dashboard/events"  routerLinkActive="active" class="nav-link " aria-current="page" href="#">
+                <span data-feather="home" class="align-text-bottom"></span>
+                Events
+              </a>
+            </li>
+            <li *ngIf="admin" class="nav-item">
+              <a [routerLink]="['/dashboard/users']" routerLinkActive="active" class="nav-link" href="#">
+                <span data-feather="file" class="align-text-bottom"></span>
+                Users
+              </a>
+            </li>
+           
+          </ul>
+  
+        
+        </div>
+      </nav>
+  
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">All Events</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button class="btn btn-sm btn-primary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Add new Event</button>
+            </div>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+
+      </main>
+      
+    </div>
+  </div>
+
+
+
+  <!-- <div  class="modal-dialog modal-dialog-centered" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+  </div> -->
+
+  

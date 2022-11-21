@@ -20,4 +20,8 @@ export class TokenService {
     localStorage.clear();
   }
 
+  getToken(): string{
+    return localStorage.getItem("planit_jwt") as string
+  }
+
 }

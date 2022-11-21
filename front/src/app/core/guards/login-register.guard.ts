@@ -14,6 +14,6 @@ export class LoginRegisterGuard implements CanActivate {
         if(!this.tokenService.isLogged()){
             return true;
         }
-        return this.router.navigateByUrl('');
+        return this.router.navigateByUrl('/dashboard');
     }
 }
