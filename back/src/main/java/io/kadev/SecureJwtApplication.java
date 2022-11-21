@@ -50,8 +50,10 @@ public class SecureJwtApplication {
 			
 			EventDate ed1 = new EventDate(null,new Date());
 			EventDate ed2 = new EventDate(null,new Date());
-			Event e1 = new Event(null,"Title 1", "Address 1", "Description 1 ....",Arrays.asList(ed1));
-			Event e2 = new Event(null,"Title 2", "Address 2", "Description 2 ....",Arrays.asList(ed2));
+			Event e1 = new Event("Title 1", "Address 1", "Description 1 ....");
+			Event e2 = new Event("Title 2", "Address 2", "Description 2 ....");
+			e1.getEventDates().add(ed1);
+			e2.getEventDates().add(ed2);
 			eventService.addEvent(e1);
 			eventService.addEvent(e2);
 			
