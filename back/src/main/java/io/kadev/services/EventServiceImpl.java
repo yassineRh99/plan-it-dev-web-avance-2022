@@ -1,14 +1,16 @@
 package io.kadev.services;
 
-import io.kadev.models.Event;
-import io.kadev.repositories.EventRepository;
-import io.kadev.repositories.UserRepository;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import io.kadev.models.Event;
+import io.kadev.repositories.EventRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
@@ -24,7 +26,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEvent(int eventId){ return eventRepository.findById(eventId); }
+    public Event getEvent(Long eventId){ return eventRepository.findById(eventId).orElseThrow(); }
 
     @Override
     public List<Event> getAllEvent(){ return eventRepository.findAll();
