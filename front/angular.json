@@ -80,9 +80,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "front:build",
-            "proxyConfig": "src/proxy.conf.json"
-          }
+            "browserTarget": "front:build"
+         }
+        
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -106,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
