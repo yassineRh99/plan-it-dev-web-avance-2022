@@ -1,13 +1,18 @@
 package io.kadev.models;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
 
 
 @Entity
@@ -16,9 +21,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class EventDate {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Event event = new Event();
     private Date date_of_event;
-
+//    @ManyToOne(cascade = CascadeType.MERGE,optional = true)
+//    @JoinColumn(name = "event_id", nullable = false)
+//    private Event event;
 }

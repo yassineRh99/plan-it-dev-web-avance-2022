@@ -22,6 +22,7 @@ public class EventControllet {
         event.setDescription(eventDto.getDescription());
         event.setTitle(eventDto.getTitle());
         event.setAddress_of_location(eventDto.getAddress_of_location());
+        event.setEventDates((eventDto.getEventDates()));
         return ResponseEntity.ok().body(eventService.addEvent(event));
     }
 
