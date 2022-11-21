@@ -29,7 +29,7 @@ public class Event {
     private String address_of_location;
     private String description;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<EventDate> eventDates =  new ArrayList<EventDate>(Arrays.asList());
+    private List<EventDate> eventDates =  new ArrayList<EventDate>(Arrays.asList());p- 
     
     public Event(String t,String aol,String d){
     	this.title = t;
