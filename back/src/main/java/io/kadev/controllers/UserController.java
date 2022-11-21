@@ -2,25 +2,22 @@ package io.kadev.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import Dto.UserDto;
 import io.kadev.models.Role;
 import io.kadev.models.User;
 import io.kadev.services.UserService;
 
-import java.util.List;
-
 @RestController
 public class UserController {
 	
 	@Autowired
 	UserService userService;
-
-	@GetMapping("/users")
-	public List<User> getAllUsers(){
-		return userService.getAllUsers();
-	}
 	
 	@PostMapping("register")
 	public ResponseEntity<User> registerUser(@RequestBody UserDto userDto){
@@ -30,7 +27,7 @@ public class UserController {
 		user.setAge(userDto.getAge());
 		user.setMembre(false);
 		user.setMot_de_passe(userDto.getPassword());
-		user.setSexe(userDto.getSexe());
+		user.setGender(userDto.getSexe());
 		return ResponseEntity.ok().body(userService.addUser(user));
 	}
 	

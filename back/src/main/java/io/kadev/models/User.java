@@ -3,7 +3,6 @@ package io.kadev.models;
 import java.util.Arrays;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,9 +23,10 @@ public class User {
 	private String username;
 	private int age;
 	
-	private String sexe;
+	private String gender;
 	private boolean membre;
 	private String mot_de_passe;
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Role> roles = Arrays.asList();
+	
 }

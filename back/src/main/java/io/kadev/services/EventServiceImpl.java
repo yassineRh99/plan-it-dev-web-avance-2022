@@ -1,7 +1,8 @@
 package io.kadev.services;
 
+
+
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -16,20 +17,26 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Slf4j
 public class EventServiceImpl implements EventService {
-    @Autowired
-    private EventRepository eventRepository;
+	@Autowired
+	private EventRepository eventRepository;
 
-    @Override
-    public Event addEvent(Event event){
-        log.info("Adding new event");
-        return eventRepository.save(event);
-    }
+	@Override
+	public Event addEvent(Event event) {
+		log.info("Adding new event");
+		return eventRepository.save(event);
 
-    @Override
-    public Event getEvent(Long eventId){ return eventRepository.findById(eventId).orElseThrow(); }
+	}
 
-    @Override
-    public List<Event> getAllEvent(){ return eventRepository.findAll();
-    }
+
+	@Override
+	public Event getEvent(Long eventId) {
+		return eventRepository.findById(eventId).orElseThrow();
+	}
+
+
+	@Override
+	public List<Event> getAllEvent() {
+		return eventRepository.findAll();
+	}
 
 }

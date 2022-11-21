@@ -1,15 +1,18 @@
 package io.kadev.controllers;
 
-import Dto.EventDto;
-import io.kadev.models.Event;
-import io.kadev.models.User;
-import io.kadev.services.EventService;
-import io.kadev.services.UserService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import Dto.EventDto;
+import io.kadev.models.Event;
+import io.kadev.services.EventService;
 
 @RestController
 public class EventControllet {
@@ -17,11 +20,12 @@ public class EventControllet {
     EventService eventService;
 
     @PostMapping("/add-event")
-    public ResponseEntity<Event> addEvent(@RequestParam EventDto eventDto){
+    public ResponseEntity<Event> addEvent(@RequestBody EventDto eventDto){
         Event event = new Event();
         event.setDescription(eventDto.getDescription());
         event.setTitle(eventDto.getTitle());
         event.setAddress_of_location(eventDto.getAddress_of_location());
+        event.setEventDates((eventDto.getEventDates()));
         return ResponseEntity.ok().body(eventService.addEvent(event));
     }
 

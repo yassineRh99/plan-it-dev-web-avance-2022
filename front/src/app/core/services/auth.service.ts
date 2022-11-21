@@ -15,11 +15,9 @@ export class AuthService {
     return this.httpClient.post<string>(`${environment.baseUrl}/login?username=${username}&password=${password}`, null);
   }
 
-  register(username: string, password: string): Observable<any>{
-    return this.httpClient.post<string>(`${environment.baseUrl}/register?username=${username}&password=${password}`, null);
+  register(formValue: {username: string, email: string, age: number, gender: string, password: string}): Observable<any>{
+    return this.httpClient.post<string>(`${environment.baseUrl}/register`,formValue,{});
   }
-
-
 
   logout(): void{
     this.tokenService.deleteToken();

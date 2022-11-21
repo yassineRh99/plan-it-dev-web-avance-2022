@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../../../core/services/auth.service';
-import { TokenService } from './../../../core/services/token.service';
-import { Router } from '@angular/router';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -13,35 +13,41 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    });
-  
-    error: boolean = false
 
-  constructor( private authService: AuthService,
-              private tokenService: TokenService,
-              private router: Router) { }
+  error: boolean = false;
+  registerForm!: FormGroup;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-
-    
+    this.registerForm = this.formBuilder.group({
+      username: [null, Validators.required],
+      email: [null, Validators.required],
+      age: [null, Validators.required],
+      gender: ['homme', Validators.required],
+      password: [null, Validators.required]
+    }, {
+      updateOn: 'blur'
+    }
+    );
   }
 
-  onLogin() {
-    this.authService.login(this.loginForm.value.username,this.loginForm.value.password).subscribe(
-      data => {
-        this.tokenService.saveToken(data.access_token);
-        this.router.navigateByUrl("/dashboard/events")
-      },
-      error => {
-        this.error = true
-      }
-    )
+  onRegister(): any {
+    if (this.registerForm.valid) {
+      this.authService.register(this.registerForm.value).pipe(
+        tap(() => this.router.navigateByUrl('/login'))
+      )
+    } else {
+      this.error = true;
+      return false;
+    }
   }
 
-  closeErrorAlert(){
+  closeErrorAlert() {
     this.error = false
   }
 
