@@ -24,9 +24,6 @@ public class User {
 	private String username;
 	private int age;
 	
-	//test espace pour github desk
-	
-	
 	private String sexe;
 	private boolean membre;
 	private String mot_de_passe;

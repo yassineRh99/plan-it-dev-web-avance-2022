@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/event")
 public class EventControllet {
     @Autowired
     EventService eventService;
@@ -32,7 +31,7 @@ public class EventControllet {
     }
 
     @GetMapping("/events/{id}")
-    public Event getEventById(@PathVariable int id){
+    public Event getEventById(@PathVariable Long id){
         return eventService.getEvent(id);
     }
 

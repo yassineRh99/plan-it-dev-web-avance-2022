@@ -1,13 +1,11 @@
 package io.kadev.services;
 
-import io.kadev.models.Event;
-import io.kadev.models.Role;
-import io.kadev.models.User;
-
 import java.util.List;
+
+import io.kadev.models.Event;
 
 public interface EventService {
     Event addEvent(Event event);
-    Event getEvent(int eventId);
+    Event getEvent(Long eventId);
     List<Event> getAllEvent();
 }
