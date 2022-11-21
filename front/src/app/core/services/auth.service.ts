@@ -16,7 +16,8 @@ export class AuthService {
   }
 
   register(formValue: {username: string, email: string, age: number, gender: string, password: string}): Observable<any>{
-    return this.httpClient.post<string>(`${environment.baseUrl}/register`,formValue,{});
+    console.log(formValue);
+    return this.httpClient.post<any>(`${environment.baseUrl}/register`,formValue);
   }
 
   logout(): void{

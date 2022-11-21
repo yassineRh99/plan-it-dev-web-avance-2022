@@ -13,7 +13,6 @@ import { tap } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
 
-
   error: boolean = false;
   registerForm!: FormGroup;
 
@@ -39,8 +38,10 @@ export class RegisterComponent implements OnInit {
   onRegister(): any {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).pipe(
-        tap(() => this.router.navigateByUrl('/login'))
-      )
+        tap(() => {
+          this.router.navigateByUrl('/login')
+        })
+      ).subscribe((data)=>console.log(data), err=>this.error=true)
     } else {
       this.error = true;
       return false;
