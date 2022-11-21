@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { TokenService } from './../services/token.service';
 
 @Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate {
+export class LoginRegisterGuard implements CanActivate {
 
     constructor(
         private router: Router,
@@ -11,10 +11,9 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if(this.tokenService.isLogged()){
+        if(!this.tokenService.isLogged()){
             return true;
         }
-        //ajouter la route du formulaire d'authentification
-        return this.router.navigateByUrl('login');
+        return this.router.navigateByUrl('');
     }
 }

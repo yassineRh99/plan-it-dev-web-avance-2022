@@ -1,28 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
+import { Observable } from 'rxjs';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private jwt!:string;
+  constructor(private httpClient: HttpClient,private tokenService: TokenService) { }
 
-  constructor(private httpClient: HttpClient) { }
-
-  login(username: string, password: string): boolean{
-    this.httpClient.post<string>(`${environment.baseUrl}/login?username=${username}&password=${password}`,null)
-        .subscribe((data)=>this.jwt=data);
-    if(this.jwt.length==0){
-      return false;
-    }else{
-      return true;
-    }
+  login(username: string, password: string): Observable<any>{
+    return this.httpClient.post<string>(`${environment.baseUrl}/login?username=${username}&password=${password}`, null);
   }
 
-  getToken(): string{
-    return this.jwt;
+  logout(): void{
+    this.tokenService.deleteToken();
+    window.location.reload();
   }
 
 }

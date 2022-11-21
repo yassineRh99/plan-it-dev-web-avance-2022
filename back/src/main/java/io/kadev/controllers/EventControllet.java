@@ -32,7 +32,7 @@ public class EventControllet {
     }
 
     @GetMapping("/events/{id}")
-    public Event getEventById(@PathVariable int id){
+    public Event getEventById(@PathVariable Long id){
         return eventService.getEvent(id);
     }
 

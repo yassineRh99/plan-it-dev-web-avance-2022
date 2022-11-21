@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../../core/services/auth.service';
+import { TokenService } from './../../../core/services/token.service';
+import { Router } from '@angular/router';
+
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +12,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+ loginForm: FormGroup = new FormGroup({
+  username: new FormControl(''),
+  password: new FormControl(''),
+  });
+
+  error: boolean = false
+
+  constructor(
+    private authService: AuthService,
+    private tokenService: TokenService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
   }
 
   //il faut passer le username et le password en arguments (depuis le formulaire)
   onLogin() {
-    console.log("clicked");
+    this.authService.login(this.loginForm.value.username,this.loginForm.value.password).subscribe(
+      data => {
+        this.tokenService.saveToken(data.access_token);
+        this.router.navigateByUrl("/events")
+      },
+      error => {
+        this.error = true
+      }
+    )
+  }
+
+  closeErrorAlert(){
+    this.error = false
+  }
+
+  navigateToRegister(){
+
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

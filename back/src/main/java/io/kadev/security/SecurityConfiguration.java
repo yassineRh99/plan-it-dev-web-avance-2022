@@ -1,5 +1,7 @@
 package io.kadev.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import io.kadev.security.filter.CustomAuthenticationFilter;
 import io.kadev.security.filter.CustomAuthorizationFilter;
@@ -44,6 +49,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"register").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.PUT,"/confirm").hasAuthority("ADMINISTRATEUR");
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/events").hasAnyAuthority("ADMINISTRATEUR","UTILISATEUR");
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/events/**").hasAnyAuthority("ADMINISTRATEUR","UTILISATEUR");
+		http.authorizeRequests().antMatchers(HttpMethod.POST,"/add-event").hasAnyAuthority("UTILISATEUR","ADMINISTRATEUR");
+		http.authorizeRequests().antMatchers(HttpMethod.GET,"/users").hasAuthority("ADMINISTRATEUR");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
 		http.addFilterBefore(new CustomAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
@@ -54,4 +63,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 	    return super.authenticationManagerBean();
 	}
+	
+	 @Bean
+	    CorsConfigurationSource corsConfigurationSource()
+	    {
+	        CorsConfiguration configuration = new CorsConfiguration();
+	        configuration.setAllowedOrigins(Arrays.asList("*"));
+	        //or any domain that you want to restrict to 
+	        configuration.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept","Authorization"));
+	   configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+	        //Add the method support as you like 
+	        UrlBasedCorsConfigurationSource source = new     UrlBasedCorsConfigurationSource();
+	        source.registerCorsConfiguration("/**", configuration);
+	        return source;
+	    }
 }
