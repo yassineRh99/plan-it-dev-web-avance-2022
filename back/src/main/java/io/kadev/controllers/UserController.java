@@ -43,6 +43,7 @@ public class UserController {
 		user.setMembre(false);
 		user.setMot_de_passe(userDto.getPassword());
 		user.setGender(userDto.getGender());
+		emailNotifierService.notify(userService.getUser("ADMIN").getEmail(),"NEW USER HAS BEEN REGISTRED", "CHECK YOUR ACCOUNT ,YOU HAVE SOME NEW USERS WAITING YOUR CONFIRMATION");
 		return ResponseEntity.ok().body(userService.addUser(user));
 	}
 	

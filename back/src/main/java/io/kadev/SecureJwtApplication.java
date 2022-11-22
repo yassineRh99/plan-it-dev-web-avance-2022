@@ -3,12 +3,10 @@ package io.kadev;
 import java.util.ArrayList;
 import java.util.Date;
 
-import io.kadev.services.EmailNotifierServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,6 +14,7 @@ import io.kadev.models.Event;
 import io.kadev.models.EventDate;
 import io.kadev.models.Role;
 import io.kadev.models.User;
+import io.kadev.services.EmailNotifierServiceImpl;
 import io.kadev.services.EventDateServiceImpl;
 import io.kadev.services.EventService;
 import io.kadev.services.UserServiceImpl;
@@ -36,8 +35,7 @@ public class SecureJwtApplication {
 		return args -> {
 			userService.addRole(new Role(null,"UTILISATEUR"));
 			userService.addRole(new Role(null,"ADMINISTRATEUR"));
-			
-			userService.addUser(new User(null,"hamzakadimi1999@gmail.com","USER",29,"Homme",false,"1949",new ArrayList<Role>()));
+
 			userService.addUser(new User(null,"hamza.kadimi@uit.ac.ma","ADMIN",32,"Homme",true,"1949",new ArrayList<Role>()));
 
 			userService.addRoleToUser("ADMIN", "ADMINISTRATEUR");
