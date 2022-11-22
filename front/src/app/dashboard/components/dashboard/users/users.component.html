@@ -1,1 +1,41 @@
-<p>users works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">All Users</h1>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">status</th>
+                <th scope="col">Control</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUsers">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.gender }}</td>
+                <td><span [class]="user.membre ? 'badge text-bg-success' : 'badge text-bg-danger' ">
+                        status
+                    </span></td>
+                <td *ngIf="user.username!=='ADMIN'">
+                    <button 
+                        (click)="onConfirm(user.id)"
+                        type="button" class="btn btn-sm btn-primary" 
+                        [disabled]="user.membre ? true : false">
+                        Confirmer
+                    </button>
+                    <button 
+                        (click)="onRemove(user.id)"
+                        type="button" class="btn btn-sm btn-danger" >
+                        remove
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

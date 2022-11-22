@@ -37,14 +37,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			log.error("Username not found !");
 			throw new UsernameNotFoundException("User not found in the database !");
 		}
-		if(!user.isMembre()) {
-			log.error("L'utilisateur n'a pas joigner l'equipe encore !");
-			throw new RuntimeException("User not allowed to login !");
-		}
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		user.getRoles().forEach(role -> {
 			authorities.add(new SimpleGrantedAuthority(role.getName()));
 		});
+		
 		return new org.springframework.security.core.userdetails.User(
 			user.getUsername(),user.getMot_de_passe(),authorities
 		);
@@ -88,5 +85,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public Role addRole(Role role) {
 		log.info("Adding new role");
 		return roleRepository.save(role);
+	}
+
+	@Override
+	public void deleteUser(Long userId) {
+		// TODO Auto-generated method stub
+		userRepository.deleteById(userId);
 	}
 }

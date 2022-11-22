@@ -19,7 +19,7 @@ export class EventsComponent implements OnInit {
     this.eventService.getAllEvents().subscribe(
       data => {
         this.allEvents = data
-      },
+      }
     )
   }
 
