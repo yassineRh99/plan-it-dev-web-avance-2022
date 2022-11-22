@@ -2,6 +2,7 @@ package io.kadev.controllers;
 
 import java.util.List;
 
+import io.kadev.services.EmailNotifierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	EmailNotifierService emailNotifierService;
 	
 	@GetMapping("users")
 	public ResponseEntity<List<User>> getUsers(){
@@ -48,12 +52,14 @@ public class UserController {
 		user.setMembre(true);
 		Role role = userService.getRole("UTILISATEUR");
 		user.getRoles().add(role);
+		emailNotifierService.notify(user.getEmail(),"CONFIRMATION ACCOUNT PLANit", "You have been accepted by the administrator of PlanIt, you are able now to participate in events proposed by the captains, ENJOY !");
 		return ResponseEntity.ok().body(userService.addUser(user));
 	}
 	
 	@DeleteMapping("remove_user")
 	public ResponseEntity<?> removeUser(@RequestParam Long userId){
 		userService.deleteUser(userId);
+		emailNotifierService.notify(userService.getUser(userId).getEmail(),"YOUR ACCOUNT IS DELETED", "Your account have been deleted, the administrator didn't accep your request for registration. Contact Us for more information");
 		return ResponseEntity.ok().body(null);
 	}
 	

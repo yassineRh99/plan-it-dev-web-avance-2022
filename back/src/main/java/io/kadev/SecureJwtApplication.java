@@ -3,10 +3,12 @@ package io.kadev;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.kadev.services.EmailNotifierServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -24,14 +26,13 @@ public class SecureJwtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SecureJwtApplication.class, args);
 	}
-	
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
-	CommandLineRunner start(UserServiceImpl userService, EventService eventService, EventDateServiceImpl eventdateService) {
+	CommandLineRunner start(UserServiceImpl userService, EventService eventService, EventDateServiceImpl eventdateService, EmailNotifierServiceImpl emailNotifierService) {
 		return args -> {
 			userService.addRole(new Role(null,"UTILISATEUR"));
 			userService.addRole(new Role(null,"ADMINISTRATEUR"));

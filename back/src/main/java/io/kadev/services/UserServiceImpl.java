@@ -78,6 +78,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public User addUser(User user) {
 		log.info("Adding new user");
 		user.setMot_de_passe(passwordEncoder.encode(user.getMot_de_passe()));
+
 		return userRepository.save(user);
 	}
 
