@@ -39,7 +39,6 @@ public class SecureJwtApplication {
 			userService.addUser(new User(null,"hamza.kadimi@uit.ac.ma","ADMIN",32,"Homme",true,"1949",new ArrayList<Role>()));
 
 			userService.addRoleToUser("ADMIN", "ADMINISTRATEUR");
-			userService.addRoleToUser("USER", "UTILISATEUR");
 			userService.addRoleToUser("ADMIN", "UTILISATEUR");
 			
 			
