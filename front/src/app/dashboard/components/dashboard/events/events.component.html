@@ -2,7 +2,7 @@
   <h1 class="h2">All Events</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group me-2">
-      <button class="btn btn-sm btn-primary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Add new Event</button>
+      <button class="btn btn-sm btn-primary" type="button" class="btn btn-primary" routerLink="/dashboard/add-event" >Add new Event</button>
     </div>
   </div>
 </div>
@@ -23,7 +23,7 @@
           <td>{{ event.title }}</td>
           <td>{{ event.address_of_location }}</td>
           <td>{{ event.description }}</td>
-          <td><button type="button" class="btn btn-sm btn-primary">More details</button></td>
+          <td><button type="button" class="btn btn-sm btn-info text-white">More details</button></td>
         </tr>            
       </tbody>
     </table>

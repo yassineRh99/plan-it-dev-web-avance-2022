@@ -4,6 +4,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EventsComponent } from './components/dashboard/events/events.component';
 import { UsersComponent } from './components/dashboard/users/users.component';
+import { AddEventComponent } from './components/dashboard/add-event/add-event.component';
 
 
 
@@ -11,8 +12,8 @@ import { UsersComponent } from './components/dashboard/users/users.component';
   declarations: [
     DashboardComponent,
     EventsComponent,
-    UsersComponent
-  ],
+    UsersComponent,
+    AddEventComponent  ],
   imports: [
     CommonModule,
     DashboardRoutingModule

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Add Event</h1>
+  </div>
+<form formGroup="addEventForm" (ngSubmit)="onAddEvent()">
+    <div class="form-group col-md-6">
+      <label for="inputAddress">Title</label>
+      <input formControlName="title" type="text" class="form-control" id="inputAddress" placeholder="Title">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="address">Address</label>
+      <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="description">Description</label>
+        <input formControlName="description" type="text" class="form-control" id="description" placeholder="Desciption">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Date</label>
+        <select id="inputState" class="form-control col-md-2">
+          <option>Jour</option>
+          <option>...</option>
+        </select>
+        <select id="inputState" class="form-control col-md-2">
+            <option>Mois</option>
+            <option>Fevrier</option>
+            <option>Mars</option>
+            <option>Avril</option>
+            <option>Mai</option>
+            <option>Juin</option>
+            <option>Juillet</option>
+            <option>Aout</option>
+            <option>Septembre</option>
+            <option>Octobre</option>
+            <option>Novembre</option>
+            <option>Decembre</option>
+          </select>
+          <select id="inputState" class="form-control col-md-2">
+            <option>Annee</option>
+            <option>...</option>
+          </select>
+          <button class="btn btn-info text-white">Add date</button>
+      </div>
+      <div class="col-md-6">
+        <p>All dates</p>
+        <ul class="list-group">
+            <li class="list-group-item">11/02/2022</li>
+            <li class="list-group-item">11/02/2022</li>
+            <li class="list-group-item">11/02/2022</li>
+            <li class="list-group-item">11/02/2022</li>
+          </ul>
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
